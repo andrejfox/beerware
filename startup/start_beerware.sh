@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cd /home/admin/beerware || exit 1
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+cd "$PROJECT_DIR" || exit 1
+echo "Current project directory: $PROJECT_DIR"
 
 if [ ! -d ".venv" ]; then
     echo -e "\e[32mCreating virtual environment...\e[0m"
@@ -16,4 +19,4 @@ if [ ! -f ".venv/packages_installed.flag" ]; then
     touch .venv/packages_installed.flag
 fi
 
-python main.py
+./.venv/bin/python main.py

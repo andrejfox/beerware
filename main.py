@@ -48,9 +48,6 @@ class MainWindow(QMainWindow):
                 color: #FBBD0D;
                 """)
 
-        self.setAttribute(Qt.WA_AcceptTouchEvents)
-
-        # List all sensors
         sensors = W1ThermSensor.get_available_sensors()
 
         print(f"Found {len(sensors)} sensors")

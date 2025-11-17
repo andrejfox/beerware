@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="updates start.sh">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="sensor update is per 50ms and startup has colours" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +193,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763389243702</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="sensor update is per 50ms and startup has colours">
+      <option name="closed" value="true" />
+      <created>1763389928577</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763389928577</updated>
+    </task>
+    <task id="LOCAL-00015" summary="sensor update is per 50ms and startup has colours">
+      <option name="closed" value="true" />
+      <created>1763390011864</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763390011864</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,6 +237,7 @@
     <MESSAGE value="i cant spell" />
     <MESSAGE value="auto does install -r requirements.txt if it hasent allready" />
     <MESSAGE value="updates start.sh" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates start.sh" />
+    <MESSAGE value="sensor update is per 50ms and startup has colours" />
+    <option name="LAST_COMMIT_MESSAGE" value="sensor update is per 50ms and startup has colours" />
   </component>
 </project>
