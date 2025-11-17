@@ -19,7 +19,6 @@ class MainWindow(QMainWindow):
             background-color: #2D2C2E;
             color: #FBBD0D;
         """)
-        self.showFullScreen()
 
         sensors = W1ThermSensor.get_available_sensors()
 
@@ -64,6 +63,8 @@ class MainWindow(QMainWindow):
             300, 100  # size
         )
         exit_button.clicked.connect(self.exit_app)
+
+        self.showFullScreen()
 
     def exit_app(self):
         print("Exiting...")
