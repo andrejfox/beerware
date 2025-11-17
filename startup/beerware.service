@@ -4,8 +4,8 @@ After=default.target
 
 [Service]
 Environment=QT_QPA_PLATFORM=wayland
-ExecStart=$HOME/beerware/startup/start_beerware.sh
-WorkingDirectory=$HOME/beerware
+ExecStart=/home/admin/beerware/startup/start_beerware.sh
+WorkingDirectory=/home/admin/beerware
 Restart=on-failure
 
 [Install]
