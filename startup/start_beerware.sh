@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Activate your virtual environment
-source /home/pi/BeerWare/.venv/bin/activate
+source /home/admin/beerware/.venv/bin/activate
 
 # Run your Python app
-python /home/pi/BeerWare/main.py
+python /home/admin/BeerWare/main.py
