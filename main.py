@@ -1,6 +1,6 @@
 import sys
 
-from PySide6.QtCore import QSize, QTimer
+from PySide6.QtCore import QSize, QTimer, QThread, Signal
 from PySide6.QtGui import QIcon, QFont, QPixmap
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 from w1thermsensor import W1ThermSensor
@@ -17,6 +17,22 @@ BUTTON_WIDTH = 300
 TARGET_TEMP = 40
 CURR_TEMP = 32
 
+class TempReader(QThread):
+    new_temp = Signal(float)
+
+    def __init__(self, sensor):
+        super().__init__()
+        self.sensor = sensor
+        self.running = True
+
+    def run(self):
+        while self.running:
+            try:
+                temp = self.sensor.get_temperature()
+                self.new_temp.emit(temp)
+            except:
+                pass
+            self.msleep(200)  # update 5 times per second
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -49,9 +65,9 @@ class MainWindow(QMainWindow):
         self.temp_label.adjustSize()
         self.temp_label.move(0, 50)  # position it somewhere
 
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_temp)
-        self.timer.start(1000)
+        self.sensor_thread = TempReader(self.sensor)
+        self.sensor_thread.new_temp.connect(self.update_temp)
+        self.sensor_thread.start()
 
         self.temp_target = QLabel(f'Target temp: {TARGET_TEMP:.1f} °C', self)
         self.temp_target.setFont(QFont("Roboto", 32))
@@ -65,10 +81,10 @@ class MainWindow(QMainWindow):
         b_minus.setGeometry(WINDOW_WIDTH - BUTTON_WIDTH, WINDOW_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
         b_minus.clicked.connect(self.b_minus_clicked)
 
-    def update_temp(self):
-        current_temp = self.sensor.get_temperature()
+    def update_temp(self, current_temp):
         self.temp_label.setText(f"Current temp: {current_temp:.2f} °C")
         self.temp_label.adjustSize()
+
         if current_temp < TARGET_TEMP:
             self.heating_on()
         else:
