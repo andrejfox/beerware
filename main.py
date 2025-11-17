@@ -1,6 +1,6 @@
 import sys
 
-from PySide6.QtCore import QSize, QTimer, QThread, Signal
+from PySide6.QtCore import QSize, QThread, Signal
 from PySide6.QtGui import QIcon, QFont, QPixmap
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 from w1thermsensor import W1ThermSensor
