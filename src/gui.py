@@ -71,7 +71,8 @@ class MainWindow(QMainWindow):
     def exit_app(self):
         print("Exiting...")
 
-        # stop thread safely
+        self.heating_relay.off()
+
         if self.sensor_thread.isRunning():
             self.sensor_thread.running = False
             self.sensor_thread.quit()
