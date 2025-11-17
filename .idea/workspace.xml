@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="auto does install -r requirements.txt if it hasent allready" />
+    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="updates start.sh">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763389049794</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updates start.sh">
+      <option name="closed" value="true" />
+      <created>1763389243702</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763389243702</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +223,7 @@
     <MESSAGE value="FIXED MORE PATHS" />
     <MESSAGE value="i cant spell" />
     <MESSAGE value="auto does install -r requirements.txt if it hasent allready" />
-    <option name="LAST_COMMIT_MESSAGE" value="auto does install -r requirements.txt if it hasent allready" />
+    <MESSAGE value="updates start.sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates start.sh" />
   </component>
 </project>

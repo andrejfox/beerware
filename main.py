@@ -34,7 +34,7 @@ class TempReader(QThread):
                 self.new_temp.emit(temp)
             except:
                 pass
-            self.msleep(200)  # update 5 times per second
+            self.msleep(50)  # update 5 times per second
 
 class MainWindow(QMainWindow):
     def __init__(self):
