@@ -17,3 +17,12 @@ systemctl --user daemon-reload
 systemctl --user enable beerware.service
 systemctl --user start beerware.service
 ```
+---
+3. Optionally fix 1024x600 resolution glitching by adding to `/boot/firmware/config.txt`
+```sh
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt=1024 600 60 6 0 0 0
+hdmi_force_hotplug=1
+disable_overscan=1
+```
