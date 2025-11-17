@@ -82,19 +82,27 @@ class MainWindow(QMainWindow):
         b_minus.setGeometry(WINDOW_WIDTH - BUTTON_WIDTH, WINDOW_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
         b_minus.clicked.connect(self.b_minus_clicked)
 
-    def event(self, e):
-        if isinstance(e, QTouchEvent):
-            points = e.touchPoints()
+        # --- EXIT BUTTON ---
+        exit_button = QPushButton("EXIT", self)
+        exit_button.setStyleSheet("background-color: red; color: white; font-size: 32px;")
+        exit_button.setGeometry(
+            (WINDOW_WIDTH // 2) - 150,  # center X
+            WINDOW_HEIGHT - BUTTON_HEIGHT - 120,  # slightly above bottom
+            300, 100  # size
+        )
+        exit_button.clicked.connect(self.exit_app)
 
-            # Trigger when 3 or more fingers touch
-            if len(points) >= 3 and e.type() == QEvent.Type.TouchBegin:
-                if self.isFullScreen():
-                    self.showNormal()  # exit fullscreen
-                else:
-                    self.showFullScreen()  # enter fullscreen
-                return True
+    def exit_app(self):
+        print("Exiting...")
 
-        return super().event(e)
+        # stop thread safely
+        if self.sensor_thread.isRunning():
+            self.sensor_thread.running = False
+            self.sensor_thread.quit()
+            self.sensor_thread.wait()
+
+        QApplication.quit()
+
 
     def update_temp(self, current_temp):
         self.temp_label.setText(f"Current temp: {current_temp:.2f} °C")
@@ -129,7 +137,6 @@ def main():
     window = MainWindow()
     window.showFullScreen()
     window.show()
-
     app.exec()
 
 
