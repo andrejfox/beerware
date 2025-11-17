@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# Activate your virtual environment
-source /home/admin/beerware/.venv/bin/activate
+cd /home/admin/beerware || exit 1
 
-# Run your Python app
-python /home/admin/beerware/main.py
+source .venv/bin/activate
+
+# Install deps ONLY if not already installed
+if [ ! -f ".venv/packages_installed.flag" ]; then
+    pip install -r requirements.txt
+    touch .venv/packages_installed.flag
+fi
+
+python main.py
