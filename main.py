@@ -1,9 +1,11 @@
 import sys
 
-from PySide6.QtCore import QSize, QThread, Signal
-from PySide6.QtGui import QIcon, QFont, QPixmap
+from PySide6.QtCore import QSize, QThread, Signal, QEvent
+from PySide6.QtGui import QIcon, QFont, QPixmap, QTouchEvent
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 from w1thermsensor import W1ThermSensor
+from PySide6.QtCore import Qt
+
 
 # set the size of the window
 WINDOW_HEIGHT = 600
@@ -40,11 +42,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("BeerWare")
         self.setFixedSize(QSize(WINDOW_WIDTH, WINDOW_HEIGHT))
-        self.setWindowIcon(QIcon("./beer_pic.png"))
+        self.setWindowIcon(QIcon("pics/beer_pic.png"))
         self.setStyleSheet("""
                 background-color: #2D2C2E;
                 color: #FBBD0D;
                 """)
+
+        self.setAttribute(Qt.WA_AcceptTouchEvents)
 
         # List all sensors
         sensors = W1ThermSensor.get_available_sensors()
@@ -56,7 +60,7 @@ class MainWindow(QMainWindow):
         self.sensor = W1ThermSensor()
 
         self.heating = QLabel(self)
-        self.heating.setPixmap(QPixmap("heating_off.png"))
+        self.heating.setPixmap(QPixmap("pics/heating_off.png"))
         self.heating.adjustSize()
         self.heating.move(self.width() - self.heating.width(), 0)
 
@@ -81,6 +85,20 @@ class MainWindow(QMainWindow):
         b_minus.setGeometry(WINDOW_WIDTH - BUTTON_WIDTH, WINDOW_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
         b_minus.clicked.connect(self.b_minus_clicked)
 
+    def event(self, e):
+        if isinstance(e, QTouchEvent):
+            points = e.touchPoints()
+
+            # Trigger when 3 or more fingers touch
+            if len(points) >= 3 and e.type() == QEvent.Type.TouchBegin:
+                if self.isFullScreen():
+                    self.showNormal()  # exit fullscreen
+                else:
+                    self.showFullScreen()  # enter fullscreen
+                return True
+
+        return super().event(e)
+
     def update_temp(self, current_temp):
         self.temp_label.setText(f"Current temp: {current_temp:.2f} °C")
         self.temp_label.adjustSize()
@@ -101,11 +119,11 @@ class MainWindow(QMainWindow):
         self.temp_target.setText(f'Target temp: {TARGET_TEMP} °C')
 
     def heating_on(self):
-        self.heating.setPixmap(QPixmap("heating_on.png"))
+        self.heating.setPixmap(QPixmap("pics/heating_on.png"))
         self.heating.adjustSize()
 
     def heating_off(self):
-        self.heating.setPixmap(QPixmap("heating_off.png"))
+        self.heating.setPixmap(QPixmap("pics/heating_off.png"))
         self.heating.adjustSize()
 
 
