@@ -96,6 +96,7 @@ class MainWindow(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     window = MainWindow()
+    window.showFullScreen()
     window.show()
 
     app.exec()
