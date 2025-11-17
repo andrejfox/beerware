@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
     def __init__(self, w_height, w_width, temp_target):
         super().__init__()
 
-        self.temp_target_label = temp_target
+        self.temp_target = temp_target
 
         self.setWindowTitle("BeerWare")
         self.setFixedSize(QSize(w_width, w_height))
@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         self.sensor_thread.cur_temp.connect(self.update_temp)
         self.sensor_thread.start()
 
-        self.temp_target_label = QLabel(f'Target temp: {self.temp_target_label:.1f} °C', self)
+        self.temp_target_label = QLabel(f'Target temp: {self.temp_target:.2f} °C', self)
         self.temp_target_label.setFont(QFont("Roboto", 32))
         self.temp_target_label.adjustSize()
 
@@ -88,12 +88,12 @@ class MainWindow(QMainWindow):
             self.heating_off()
 
     def b_plus_clicked(self):
-        self.temp_target_label += 1
-        self.temp_target_label.setText(f'Target temp: {self.temp_target_label} °C')
+        self.temp_target += 1
+        self.temp_target_label.setText(f'Target temp: {self.temp_target:.2f} °C')
 
     def b_minus_clicked(self):
-        self.temp_target_label -= 1
-        self.temp_target_label.setText(f'Target temp: {self.temp_target_label} °C')
+        self.temp_target -= 1
+        self.temp_target_label.setText(f'Target temp: {self.temp_target:.2f} °C')
 
     def heating_on(self):
         self.heating_label.setPixmap(QPixmap("./pics/heating_on.png"))
