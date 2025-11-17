@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtWidgets import QLabel, QPushButton, QMainWindow, QApplication
 from w1thermsensor import W1ThermSensor
 
-from temp_reader import TempReader
+from src.temp_reader import TempReader
 
 
 class MainWindow(QMainWindow):
