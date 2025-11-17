@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="dynaming home + escaping full screen">
+    <list default="true" id="da947d13-ee6e-4d82-9480-1016ac9a53c5" name="Changes" comment="updates deerware.service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup/beerware.service" beforeDir="false" afterPath="$PROJECT_DIR$/startup/beerware.service" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763390393212</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="aded exit button">
+      <option name="closed" value="true" />
+      <created>1763390882723</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763390882723</updated>
+    </task>
+    <task id="LOCAL-00018" summary="updates deerware.service">
+      <option name="closed" value="true" />
+      <created>1763391022852</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763391022852</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,6 +266,8 @@
     <MESSAGE value="updates start.sh" />
     <MESSAGE value="sensor update is per 50ms and startup has colours" />
     <MESSAGE value="dynaming home + escaping full screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="dynaming home + escaping full screen" />
+    <MESSAGE value="aded exit button" />
+    <MESSAGE value="updates deerware.service" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates deerware.service" />
   </component>
 </project>

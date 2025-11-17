@@ -1,14 +1,13 @@
 [Unit]
 Description=BeerWare GUI
-After=graphical.target
+After=default.target
 
 [Service]
 Environment=QT_QPA_PLATFORM=wayland
 ExecStart=/home/admin/beerware/startup/start_beerware.sh
 WorkingDirectory=/home/admin/beerware
-User=admin
-Group=admin
 Restart=on-failure
 
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target
+
