@@ -1,6 +1,7 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtWidgets import QLabel, QPushButton, QMainWindow, QApplication
+from gpiozero import OutputDevice
 from w1thermsensor import W1ThermSensor
 
 from src.temp_reader import TempReader
@@ -10,6 +11,7 @@ class MainWindow(QMainWindow):
     def __init__(self, w_height, w_width, temp_target):
         super().__init__()
 
+        self.heating_relay = OutputDevice(18, active_high=True, initial_value=False)
         self.temp_target = temp_target
 
         self.setWindowTitle("BeerWare")
@@ -36,7 +38,7 @@ class MainWindow(QMainWindow):
         self.temp_label = QLabel("Current temp: -- °C", self)
         self.temp_label.setFont(QFont("Roboto", 32))
         self.temp_label.adjustSize()
-        self.temp_label.move(0, 50)  # position it somewhere
+        self.temp_label.move(0, 50)
 
         self.sensor_thread = TempReader(self.sensor)
         self.sensor_thread.cur_temp.connect(self.update_temp)
@@ -98,7 +100,9 @@ class MainWindow(QMainWindow):
     def heating_on(self):
         self.heating_label.setPixmap(QPixmap("./pics/heating_on.png"))
         self.heating_label.adjustSize()
+        self.heating_relay.on()
 
     def heating_off(self):
         self.heating_label.setPixmap(QPixmap("./pics/heating_off.png"))
         self.heating_label.adjustSize()
+        self.heating_relay.off()
