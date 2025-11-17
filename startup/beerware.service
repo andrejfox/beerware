@@ -4,11 +4,11 @@ After=graphical.target
 
 [Service]
 Environment=QT_QPA_PLATFORM=wayland
-ExecStart=/home/admin/weerware/startup/start_beerware.sh
+ExecStart=/home/admin/beerware/startup/start_beerware.sh
 WorkingDirectory=/home/admin/beerware
 User=admin
 Group=admin
-Restart=always
+Restart=on-failure
 
 [Install]
 WantedBy=graphical.target
