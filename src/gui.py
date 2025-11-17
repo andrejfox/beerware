@@ -82,7 +82,7 @@ class MainWindow(QMainWindow):
         self.temp_label.setText(f"Current temp: {cur_temp:.2f} °C")
         self.temp_label.adjustSize()
 
-        if cur_temp < self.temp_target_label:
+        if cur_temp < self.temp_target:
             self.heating_on()
         else:
             self.heating_off()
