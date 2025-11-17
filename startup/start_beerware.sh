@@ -4,4 +4,4 @@
 source /home/admin/beerware/.venv/bin/activate
 
 # Run your Python app
-python /home/admin/BeerWare/main.py
+python /home/admin/beerbare/main.py
