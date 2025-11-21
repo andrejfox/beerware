@@ -1,18 +1,21 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtWidgets import QLabel, QPushButton, QMainWindow, QApplication
-from gpiozero import OutputDevice
-from w1thermsensor import W1ThermSensor
 
-from src.temp_reader import TempReader
+from src.heating import Heating
+from src.thermometer import Thermometers
 
 
 class MainWindow(QMainWindow):
     def __init__(self, w_height, w_width, temp_target):
         super().__init__()
-
-        self.heating_relay = OutputDevice(18, active_high=True, initial_value=False)
         self.temp_target = temp_target
+
+        self.heating_system = Heating(18, 10, 3, 0.3)
+        self.thermometer_system = Thermometers(1.0)
+
+        self.heating_system.start()
+        self.thermometer_system.start()
 
         self.setWindowTitle("BeerWare")
         self.setFixedSize(QSize(w_width, w_height))
@@ -21,14 +24,6 @@ class MainWindow(QMainWindow):
             background-color: #2D2C2E;
             color: #FBBD0D;
         """)
-
-        sensors = W1ThermSensor.get_available_sensors()
-
-        print(f"Found {len(sensors)} sensors")
-        for sensor in sensors:
-            print(sensor.id)
-
-        self.sensor = W1ThermSensor()
 
         self.heating_label = QLabel(self)
         self.heating_label.setPixmap(QPixmap("./pics/heating_off.png"))
@@ -39,10 +34,6 @@ class MainWindow(QMainWindow):
         self.temp_label.setFont(QFont("Roboto", 32))
         self.temp_label.adjustSize()
         self.temp_label.move(0, 50)
-
-        self.sensor_thread = TempReader(self.sensor)
-        self.sensor_thread.cur_temp.connect(self.update_temp)
-        self.sensor_thread.start()
 
         self.temp_target_label = QLabel(f'Target temp: {self.temp_target:.2f} °C', self)
         self.temp_target_label.setFont(QFont("Roboto", 32))
@@ -70,13 +61,8 @@ class MainWindow(QMainWindow):
 
     def exit_app(self):
         print("Exiting...")
-
-        self.heating_relay.off()
-
-        if self.sensor_thread.isRunning():
-            self.sensor_thread.running = False
-            self.sensor_thread.quit()
-            self.sensor_thread.wait()
+        self.heating_system.stop()
+        self.thermometer_system.stop()
 
         QApplication.quit()
 
