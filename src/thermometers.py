@@ -5,6 +5,7 @@ import threading
 import time
 
 class Thermometers:
+
     offsets = {
         'db5a7d0a6461': 0,
         '8490710a6461': 0
