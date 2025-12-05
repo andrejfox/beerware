@@ -1,6 +1,9 @@
+click==8.3.1
+colorzero==2.0
+gpiozero==2.0.1
 PySide6==6.10.0
 PySide6_Addons==6.10.0
 PySide6_Essentials==6.10.0
+setuptools==80.9.0
 shiboken6==6.10.0
 w1thermsensor==2.3.0
-gpiozero==2.0.1
