@@ -6,8 +6,8 @@ import time
 
 class Thermometers:
     offsets = {
-        'db5a7d0a6461': 5.93,
-        '8490710a6461': -3.5
+        'db5a7d0a6461': 0,
+        '8490710a6461': 0
     }
 
     def __init__(self, update_interval=1.0):
