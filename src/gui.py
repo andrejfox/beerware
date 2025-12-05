@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         self.temp_target = temp_target
 
         self.heating_system = Heating(18, 10, 3, 0.3)
-        self.thermometer_system = Thermometers(0.1)
+        self.thermometer_system = Thermometers(0.3)
 
         self.heating_system.start()
         self.thermometer_system.start()
