@@ -27,7 +27,7 @@ class Thermometers:
                     print(f"Error reading sensor {sensor.id}: {e}")
                     self.temperatures[sensor.id] = None
 
-            print(self.sensors)
+            print(self.temperatures)
             time.sleep(self.update_interval)
 
     def start(self):
