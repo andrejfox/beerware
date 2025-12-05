@@ -64,9 +64,11 @@ class MainWindow(QMainWindow):
 
         self._running = False
         self._thread = None
+        self.start()
 
     def exit_app(self):
         print("Exiting...")
+        self.stop()
         self.heating_system.stop()
         self.thermometer_system.stop()
 
@@ -91,6 +93,12 @@ class MainWindow(QMainWindow):
             self._running = True
             self._thread = threading.Thread(target=self._loop, daemon=True)
             self._thread.start()
+
+    def stop(self):
+        self._running = False
+        if self._thread is not None:
+            self._thread.join()
+            self._thread = None
 
     def _loop(self):
         while self._running:
