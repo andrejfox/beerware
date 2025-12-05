@@ -1,3 +1,6 @@
+import threading
+import time
+
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtWidgets import QLabel, QPushButton, QMainWindow, QApplication
@@ -59,6 +62,9 @@ class MainWindow(QMainWindow):
 
         self.showFullScreen()
 
+        self._running = False
+        self._thread = None
+
     def exit_app(self):
         print("Exiting...")
         self.heating_system.stop()
@@ -66,10 +72,11 @@ class MainWindow(QMainWindow):
 
         QApplication.quit()
 
-
     def update_temp(self):
-        cur_temp0 = self.thermometer_system.temperatures['db5a7d0a6461']
-        print(cur_temp0)
+        cur_temp0 = self.thermometer_system.temperatures.get('db5a7d0a6461')
+        if cur_temp0 is None:
+            return
+
         self.temp_label.setText(f'Current temp: {cur_temp0:.2f} °C')
         self.temp_label.adjustSize()
 
@@ -77,6 +84,18 @@ class MainWindow(QMainWindow):
             self.heating_on()
         else:
             self.heating_off()
+
+
+    def start(self):
+        if not self._running:
+            self._running = True
+            self._thread = threading.Thread(target=self._loop, daemon=True)
+            self._thread.start()
+
+    def _loop(self):
+        while self._running:
+            self.update_temp()
+            time.sleep(0.1)  # update every 1 second
 
     def b_plus_clicked(self):
         self.temp_target += 1
