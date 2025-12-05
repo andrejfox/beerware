@@ -13,7 +13,6 @@ class Thermometers:
 
         # Create a dictionary: sensor_id -> temperature
         self.temperatures: Dict[str, Optional[float]] = {sensor.id: None for sensor in self.sensors}
-        print(self.sensors)
 
         self.update_interval = update_interval
         self._running = False
@@ -27,6 +26,8 @@ class Thermometers:
                 except Exception as e:
                     print(f"Error reading sensor {sensor.id}: {e}")
                     self.temperatures[sensor.id] = None
+
+            print(self.sensors)
             time.sleep(self.update_interval)
 
     def start(self):
