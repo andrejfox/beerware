@@ -70,6 +70,7 @@ class MainWindow(QMainWindow):
     def update_temp(self):
         cur_temp0 = self.thermometer_system.temperatures['db5a7d0a6461']
         self.temp_label.setText(f'Current temp: {cur_temp0:.2f} °C')
+        self.temp_label.adjustSize()
 
         if cur_temp0 < self.temp_target:
             self.heating_on()
