@@ -4,7 +4,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from src.testing_gui import MainWindow
+from src.gui import MainWindow
 
 
 def main():
