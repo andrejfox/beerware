@@ -1,3 +1,9 @@
+(gpio 4)
+Sensor0: 'db5a7d0a6461'
+
+(gpio 17)
+Sensor1: '8490710a6461'
+
 1. Clone repo in to `~/`
 ```sh
 cd ~
@@ -25,4 +31,12 @@ hdmi_mode=87
 hdmi_cvt=1024 600 60 6 0 0 0
 hdmi_force_hotplug=1
 disable_overscan=1
+```
+4. For w1protocol to work do:
+```shell
+sudo nano /boot/firmware/config.txt
+```
+```
+dtoverlay=w1-gpio,gpiopin=4
+dtoverlay=w1-gpio,gpiopin=17,slave=0
 ```

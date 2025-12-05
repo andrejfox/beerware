@@ -5,6 +5,11 @@ import threading
 import time
 
 class Thermometers:
+    offsets = {
+        'db5a7d0a6461': 5.93,
+        '8490710a6461': -3.5
+    }
+
     def __init__(self, update_interval=1.0):
         self.sensors = W1ThermSensor.get_available_sensors()
         print(f"Found {len(self.sensors)} sensors")
@@ -22,7 +27,7 @@ class Thermometers:
         while self._running:
             for sensor in list(self.sensors):
                 try:
-                    self.temperatures[sensor.id] = sensor.get_temperature()
+                    self.temperatures[sensor.id] = sensor.get_temperature() + self.offsets[sensor.id]
                 except Exception as e:
                     print(f"Error reading sensor {sensor.id}: {e}")
                     self.temperatures[sensor.id] = None

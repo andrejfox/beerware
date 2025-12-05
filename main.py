@@ -6,7 +6,6 @@ from PySide6.QtWidgets import QApplication
 
 from src.gui import MainWindow
 
-
 def main():
     with open("config.json", "r") as f:
         config = json.load(f)
