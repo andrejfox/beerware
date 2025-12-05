@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtWidgets import QLabel, QPushButton, QMainWindow, QApplication
 
 from src.heating import Heating
-from src.thermometer import Thermometers
+from src.thermometers import Thermometers
 
 
 class MainWindow(QMainWindow):
@@ -87,9 +87,9 @@ class MainWindow(QMainWindow):
     def heating_on(self):
         self.heating_label.setPixmap(QPixmap("./pics/heating_on.png"))
         self.heating_label.adjustSize()
-        self.heating_relay.on()
+        self.heating_system.heater0 = True
 
     def heating_off(self):
         self.heating_label.setPixmap(QPixmap("./pics/heating_off.png"))
         self.heating_label.adjustSize()
-        self.heating_relay.off()
+        self.heating_system.heater0 = False

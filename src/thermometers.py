@@ -13,6 +13,7 @@ class Thermometers:
 
         # Create a dictionary: sensor_id -> temperature
         self.temperatures: Dict[str, Optional[float]] = {sensor.id: None for sensor in self.sensors}
+        print(self.sensors)
 
         self.update_interval = update_interval
         self._running = False
